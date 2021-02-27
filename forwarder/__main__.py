@@ -8,18 +8,21 @@ from forwarder import API_KEY, OWNER_ID, WEBHOOK, IP_ADDRESS, URL, CERT_PATH, PO
 from forwarder.modules import ALL_MODULES
 
 PM_START_TEXT = """
-Hey {}, I'm {}!
-I'm a bot used to forward messages from one chat to another.
+Hola {}, Soy {}!
+Soy un bot que se utiliza para reenviar mensajes de un chat a otro.
+Para obtener una lista de comandos, use /help.
 
-To obtain a list of commands, use /help.
+<b>Bot creado por:<\b> @DKzippO
 """
 
 PM_HELP_TEXT = """
-Here is a list of usable commands:
- - /start : Starts the bot.
- - /help : Sends you this help message.
+Aquí hay una lista de comandos utilizables:
+ - /start : Inicia el bot
+ - /help : Te envía este mensaje de ayuda.
 
-just send /id in private chat/group/channel and i will reply it's id.
+simplemente envíe /id en el chat/grupo o canal privado y le responderé su id.
+
+<b>Bot creado por:<\b> @DKzippO
 """
 
 for module in ALL_MODULES:
@@ -34,7 +37,7 @@ def start(update, context):
     if chat.type == "private":
         message.reply_text(PM_START_TEXT.format(user.first_name, dispatcher.bot.first_name), parse_mode=ParseMode.HTML)
     else:
-        message.reply_text("I'm up and running!")
+        message.reply_text("¡Estoy listo y funcionando!\n\n Bot creado por @DKzippO")
 
 
 def help(update, context):
@@ -42,7 +45,7 @@ def help(update, context):
     message = update.effective_message  # type: Optional[Message]
 
     if not chat.type == "private":
-        message.reply_text("Contact me via PM to get a list of usable commands.")
+        message.reply_text("Contácteme a través de un mensaje privado para obtener una lista de comandos utilizables.\n\n Bot creado por @DKzippO")
     else:
         message.reply_text(PM_HELP_TEXT)
 
@@ -73,5 +76,5 @@ def main():
 
 
 if __name__ == '__main__':
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info("Plugins cargados con éxito: " + str(ALL_MODULES))
     main()
