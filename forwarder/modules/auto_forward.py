@@ -14,7 +14,7 @@ def forward(update, context):
             context.bot.forward_message(chat_id=chat, from_chat_id=from_chat_id, message_id=message.message_id)
         
         except:
-            LOGGER.exception("Error while forwarding message from chat \"{}\" to chat \"{}\".".\
+            LOGGER.exception("Error al reenviar el mensaje del canal \"{}\" al chat \"{}\".".\
                              format(from_chat_name, to_chat_name))
 
 
@@ -28,4 +28,4 @@ try:
     dispatcher.add_handler(FORWARD_HANDLER)
 
 except ValueError:  # When FROM_CHATS list is not set because user doesn't know chat id(s)
-    LOGGER.warn("I can't FORWARD_HANDLER because your FROM_CHATS list is empty.")
+    LOGGER.warn("No puedo FORWARD_HANDLER porque su lista FROM_CHATS está vacía.")
